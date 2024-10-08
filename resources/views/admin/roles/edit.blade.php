@@ -3,7 +3,7 @@
 @section('content')
   <div class="card">
     <h1>Edit role</h1>
-
+    
     <div>
       <form action="{{route('roles.update', $role->id) }}" method="POST">
         @csrf
@@ -59,7 +59,7 @@
           </div>
         </div>
 
-        <button type="submit" class="btn btn-submit btn-primary">Submit</button>
+        <button type="submit" class="btn btn-submit btn-primary">Update</button>
       </form>
     </div>
   </div>

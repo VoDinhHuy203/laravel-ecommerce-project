@@ -32,7 +32,7 @@
             <form action="{{route('roles.destroy', $role->id) }}" method="post">
               @csrf
               @method('DELETE')
-              <button class="btn btn-danger">Delete</button>
+              <button class="btn btn-danger" data-id="{{$role->id}}">Delete</button>
             </form>
           </td>
         </tr>
