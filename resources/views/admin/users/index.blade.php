@@ -34,11 +34,11 @@
           <td>{{$user->address}}</td>
           <td>
             <a href="{{route('users.edit', $user->id) }}" class="btn btn-warning">Edit</a>
-            <form action="{{route('users.destroy', $user->id) }}" method="post">
+            <form action="{{route('users.destroy', $user->id) }}" id="form-delete{{ $user->id }}" method="post">
               @csrf
               @method('DELETE')
-              <button class="btn btn-danger" type="submit" data-id="{{$user->id}}">Delete</button>
             </form>
+            <button class="btn btn-delete btn-danger" type="submit" data-id="{{$user->id}}">Delete</button>
           </td>
         </tr>
       @endforeach

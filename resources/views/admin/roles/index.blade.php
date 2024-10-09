@@ -29,11 +29,11 @@
           <td>{{$role->display_name}}</td>
           <td>
             <a href="{{route('roles.edit', $role->id) }}" class="btn btn-warning">Edit</a>
-            <form action="{{route('roles.destroy', $role->id) }}" method="post">
+            <form action="{{route('roles.destroy', $role->id) }}" method="post" id="form-delete{{ $role->id }}">
               @csrf
               @method('DELETE')
-              <button class="btn btn-danger" data-id="{{$role->id}}">Delete</button>
             </form>
+            <button class="btn btn-delete btn-danger" data-id="{{$role->id}}">Delete</button>
           </td>
         </tr>
       @endforeach
@@ -42,4 +42,8 @@
     {{ $roles->links() }}
   </div>
 </div>
+@endsection
+
+@section('script')
+    
 @endsection
