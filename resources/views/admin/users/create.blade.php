@@ -19,7 +19,7 @@
             @enderror
           </div>
           <div class="col-5">
-            <img src="" id="show-image" alt="">
+            <img src="" id="show-image" alt="" width="200px">
           </div>
         </div>
 
