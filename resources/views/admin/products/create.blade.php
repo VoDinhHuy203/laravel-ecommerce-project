@@ -52,9 +52,8 @@
                 <div class="form-group">
                     <label>Description</label>
                     <div class="row w-100 h-100">
-                        <textarea name="description" id="description" class="form-control"
+                        <textarea name="description" class="form-control"
                             style="width: 100%">{{ old('description') }} </textarea>
-
                     </div>
                     @error('description')
                         <span class="text-danger"> {{ $message }}</span>

@@ -17,7 +17,7 @@
         
       </div>
       
-      @if ($category->childrens->count() > 0) 
+      @if ($category->childrens->count() > 1 ) 
         <div class="input-group input-group-static mb-4">
           <label class="ms-0">Parent Category</label>
           <select name="parent_id" class="form-control" >

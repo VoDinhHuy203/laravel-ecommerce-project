@@ -1,6 +1,7 @@
 @extends('admin.layouts.app')
 @section('title', 'Products')
 @section('content')
+@section('page', 'Products')
 <div class="card">
 
   @if (session('message'))
@@ -28,7 +29,7 @@
           <td>{{$product->id}}</td>
           <td><img src="{{ $product->images->count() > 0 ? asset('upload/' . $product->images->first()->url) : 'upload/ao-default.webp' }}" width="50px" height="50px"  alt=""></td>
           <td>{{$product->name}}</td>
-          <td>{{$product->price}}</td>
+          <td>${{$product->price}}</td>
           <td>{{$product->sale}}</td>
           <td>
             <a href="{{route('products.edit', $product->id) }}" class="btn btn-warning">Edit</a>

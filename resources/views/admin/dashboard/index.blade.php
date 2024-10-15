@@ -1,5 +1,5 @@
 @extends('admin.layouts.app')
-
+@section('page', 'Dashboard')
 @section('content')
     <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
         <div class="card">

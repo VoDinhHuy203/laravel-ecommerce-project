@@ -37,8 +37,8 @@ class Product extends Model
         $this->categories()->sync($categoryIds);
     }
 
-    // public function assignDetail($details) 
-    // {
-    //     $this->details()->sync($details);
-    // }
+    public function getBy($dataSearch, $category_id)
+    {
+        return $this->whereHas('categories', fn($q) => $q->where('category_id', $category_id))->paginate(8);
+    }
 }
