@@ -11,10 +11,15 @@
     </div>
     <!-- Page Header End -->
 
+    @if (session('message'))
+        <h2 class="" style="text-align:center; width:100%; color:red">{{ session('message') }}</h2>
+    @endif
 
     <!-- Shop Detail Start -->
     <div class="container-fluid py-5">
-        <div class="row px-xl-5">
+        <form action="{{ route('client.carts.add') }}" class="row px-xl-5" method="post">
+            @csrf
+            <input type="hidden" name="product_id" value="{{ $product->id }}">
             <div class="col-lg-5 pb-5">
                 <div id="product-carousel" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner border">
@@ -48,22 +53,28 @@
                         <small class="pt-1">(50 Reviews)</small>
                     </div>
                 </div>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime suscipit veniam ducimus eveniet sapiente? Porro inventore, odit dolores ut natus voluptate eaque. Neque tempora vitae magni, nam maxime possimus corporis.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime suscipit veniam ducimus eveniet sapiente?
+                    Porro inventore, odit dolores ut natus voluptate eaque. Neque tempora vitae magni, nam maxime possimus
+                    corporis.</p>
                 <h3 class="font-weight-semi-bold mb-4">${{ $product->price }}</h3>
-                
+
 
                 <div class="d-flex mb-4">
                     <p class="text-dark font-weight-medium mb-0 mr-3">Size:</p>
-                    <form>
+                    @if ($product->details->count() > 0)
                         @foreach ($product->details as $size)
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                <label class="form-check-label" for="flexRadioDefault1">
+                                <input class="form-check-input" type="radio" name="product_size"
+                                    id="size{{ $size->size }}" value="{{ $size->size }}">
+                                <label for="size{{ $size->size }}" class="form-check-label" for="flexRadioDefault1">
                                     {{ $size->size }}
                                 </label>
-                              </div>
+                            </div>
                         @endforeach
-                    </form>
+                    @else
+                        <p>Hết hàng</p>
+                    @endif
+
                 </div>
                 <div class="d-flex align-items-center mb-4 pt-2">
                     <div class="input-group quantity mr-3" style="width: 130px;">
@@ -99,7 +110,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
         <div class="row px-xl-5">
             <div class="col">
                 <div class="nav nav-tabs justify-content-center border-secondary mb-4">
@@ -110,19 +121,19 @@
                     <div class="tab-pane fade show active" id="tab-pane-1">
                         <h3 class="mb-3">Product Description</h3>
                         <p>
-                            <h6>SHOP CAM KẾT</h6>		
-                            <p>✔ Mang đến cho khách hàng những sản phẩm với chất lượng tốt nhất trong tầm giá.		</p>
-                            <p>✔ Chính sách bảo  hành tốt nhất ( Hỗ trợ đổi size, sản phẩm lỗi)		</p>
-                            <p>✔ Shop Cam Kết Chất Lượng và Mẫu Mã Giống hình ảnh 100%		</p>
-                            <p>✔ Mẫu Mã Đa Dạng ,Cập Nhật Liên Tục, Chất liệu hàng đầu, giá cả hợp lý.		</p>
-                            <p>✔ Nhận hàng không ưng hoặc lỗi khách hàng có thể hoàn hàng và được hoàn tiền 100%		</p>
-                                    
-                            <h6>HƯỚNG DẪN CHỌN SIZE :		</h6>
-                                    
-                            <p>✔ Size S:  Nặng 40-45kg ~ Cao 1m45-1m55		</p>
-                            <p>✔ Size M: Nặng 45- 50kg ~ Cao 1m55-1m60	</p>
-                            <p>✔ Size L: Nặng 50 - 55kg ~ Cao 1m60-1m65	</p>
-                            <p>✔ Size XL: Nặng 55-65kg ~ Cao 1m65-1m70	</p>
+                        <h6>SHOP CAM KẾT</h6>
+                        <p>✔ Mang đến cho khách hàng những sản phẩm với chất lượng tốt nhất trong tầm giá. </p>
+                        <p>✔ Chính sách bảo hành tốt nhất ( Hỗ trợ đổi size, sản phẩm lỗi) </p>
+                        <p>✔ Shop Cam Kết Chất Lượng và Mẫu Mã Giống hình ảnh 100% </p>
+                        <p>✔ Mẫu Mã Đa Dạng ,Cập Nhật Liên Tục, Chất liệu hàng đầu, giá cả hợp lý. </p>
+                        <p>✔ Nhận hàng không ưng hoặc lỗi khách hàng có thể hoàn hàng và được hoàn tiền 100% </p>
+
+                        <h6>HƯỚNG DẪN CHỌN SIZE : </h6>
+
+                        <p>✔ Size S: Nặng 40-45kg ~ Cao 1m45-1m55 </p>
+                        <p>✔ Size M: Nặng 45- 50kg ~ Cao 1m55-1m60 </p>
+                        <p>✔ Size L: Nặng 50 - 55kg ~ Cao 1m60-1m65 </p>
+                        <p>✔ Size XL: Nặng 55-65kg ~ Cao 1m65-1m70 </p>
                         </p>
                     </div>
 
@@ -131,7 +142,8 @@
                             <div class="col-md-6">
                                 <h4 class="mb-4">1 review for {{ $product->name }}</h4>
                                 <div class="media mb-4">
-                                    <img src="img/user.jpg" alt="Image" class="img-fluid mr-3 mt-1" style="width: 45px;">
+                                    <img src="img/user.jpg" alt="Image" class="img-fluid mr-3 mt-1"
+                                        style="width: 45px;">
                                     <div class="media-body">
                                         <h6>John Doe<small> - <i>01 Jan 2045</i></small></h6>
                                         <div class="text-primary mb-2">

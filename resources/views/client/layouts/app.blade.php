@@ -85,7 +85,7 @@
                 </a>
                 <a href="" class="btn border">
                     <i class="fas fa-shopping-cart text-primary"></i>
-                    <span class="badge">0</span>
+                    <span class="badge">{{ $countProductInCart }}</span>
                 </a>
             </div>
         </div>
@@ -108,21 +108,24 @@
                     <div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
 
                         @foreach ($categories as $item)
-                            @if($item->childrens->count() > 0)
+                            @if ($item->childrens->count() > 0)
                                 <div class="nav-item dropdown">
                                     <a href="#" class="nav-link" data-toggle="dropdown">{{ $item->name }} <i
                                             class="fa fa-angle-down float-right mt-1"></i></a>
-                                    <div class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
+                                    <div
+                                        class="dropdown-menu position-absolute bg-secondary border-0 rounded-0 w-100 m-0">
                                         @foreach ($item->childrens as $childCategory)
-                                            <a href="{{ route('client.products.index', ['category_id' => $childCategory->id ]) }}" class="dropdown-item">{{ $childCategory->name }}</a>
+                                            <a href="{{ route('client.products.index', ['category_id' => $childCategory->id]) }}"
+                                                class="dropdown-item">{{ $childCategory->name }}</a>
                                         @endforeach
                                     </div>
                                 </div>
                             @else
-                                <a href="{{ route('client.products.index', ['category_id' => $item->id ]) }}" class="dropdown-item">{{ $item->name }}</a>
+                                <a href="{{ route('client.products.index', ['category_id' => $item->id]) }}"
+                                    class="dropdown-item">{{ $item->name }}</a>
                             @endif
                         @endforeach
-                        
+
                     </div>
                 </nav>
             </div>
@@ -132,7 +135,8 @@
                         <h1 class="m-0 display-5 font-weight-semi-bold"><span
                                 class="text-primary font-weight-bold border px-3 mr-1">E</span>Shopper</h1>
                     </a>
-                    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <button type="button" class="navbar-toggler" data-toggle="collapse"
+                        data-target="#navbarCollapse">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
@@ -156,7 +160,7 @@
                 <div id="header-carousel" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active" style="height: 410px;">
-                            <img class="img-fluid" src="{{ asset('client/img/carousel-1.jpg')}}" alt="Image">
+                            <img class="img-fluid" src="{{ asset('client/img/carousel-1.jpg') }}" alt="Image">
                             <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                                 <div class="p-3" style="max-width: 700px;">
                                     <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Off Your First
@@ -167,7 +171,7 @@
                             </div>
                         </div>
                         <div class="carousel-item" style="height: 410px;">
-                            <img class="img-fluid" src="{{ asset('client/img/carousel-2.jpg')}}" alt="Image">
+                            <img class="img-fluid" src="{{ asset('client/img/carousel-2.jpg') }}" alt="Image">
                             <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                                 <div class="p-3" style="max-width: 700px;">
                                     <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Off Your First
